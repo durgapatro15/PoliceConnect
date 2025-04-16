@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assigned Work</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Assigned Work</h1>
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Complaint ID</th>
+                        <th scope="col">Address and Complaint</th>
+                        <th scope="col">View Location</th>
+                        <th scope="col">Upload Image</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="work : ${workDetails}">
+                        <td th:text="${work['garbageId']}"></td> <!-- Garbage ID -->
+                        <td th:text="${work['garbageAddress']}"></td> <!-- Address -->
+                        <td>
+                            <a class="btn btn-info btn-sm text-white"
+                               th:href="'https://www.google.com/maps?q=' + ${work['latitude']} + ',' + ${work['longitude']}"
+                               target="_blank">View Location</a>
+                        </td>
+                        <td>
+                            <form th:action="@{/uploadImage}" method="post" enctype="multipart/form-data">
+                                <input type="hidden" name="garbageId" th:value="${work['garbageId']}" />
+                                <input type="hidden" name="workerId" th:value="${workerId}" /> <!-- Pass workerId -->
+                                <input type="file" name="cleanedImage" accept="image/*" />
+                                <button type="submit" class="btn btn-primary btn-sm">Upload</button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
