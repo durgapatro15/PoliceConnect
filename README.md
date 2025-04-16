@@ -1,6 +1,6 @@
 ## 📝 Project Description
 
-The **Police Grievance Management Portal** is a full-stack Spring Boot web application built to digitize and streamline the process of filing and resolving civic complaints. 
+The **PoliceConnect a Police Grievance Management Portal** is a full-stack Spring Boot web application built to digitize and streamline the process of filing and resolving civic complaints. 
 
 ✔️ Citizens can register, log in, and submit complaints with images and location data.  
 ✔️ Police officers can view and update their assigned cases.  
